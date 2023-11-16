@@ -1,0 +1,617 @@
+local UI = {}
+
+-- Variables
+local Library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = Library:MakeWindow({Name = "Parkour (Galaxy)", HidePremium = true})
+
+local Gearless_Tab = Window:MakeTab({
+    Name = "Gearless",
+    Icon = "rbxassetid://3152629574",
+    PremiumOnly = false
+})
+
+local Grappler_Tab = Window:MakeTab({
+    Name = "Grappler",
+    Icon = string.format("rbxthumb://type=Asset&id=%s&w=420&h=420",tonumber(10493686822)),
+    PremiumOnly = false
+})
+
+local Magrail_Tab = Window:MakeTab({
+    Name = "Magrail",
+    Icon = string.format("rbxthumb://type=Asset&id=%s&w=420&h=420",tonumber(10493687634)),
+    PremiumOnly = false
+})
+
+local Paraglider_Tab = Window:MakeTab({
+    Name = "Paraglider",
+    Icon = string.format("rbxthumb://type=Asset&id=%s&w=420&h=420",tonumber(10493693841)),
+    PremiumOnly = false
+})
+
+local Wingsuit_Tab = Window:MakeTab({
+    Name = "Wingsuit",
+    Icon = string.format("rbxthumb://type=Asset&id=%s&w=420&h=420",tonumber(10493701003)),
+    PremiumOnly = false
+})
+
+local Cola_Tab = Window:MakeTab({
+    Name = "Cola",
+    Icon = "rbxassetid://9743223064",
+    PremiumOnly = false
+})
+
+local Adrenaline_Tab = Window:MakeTab({
+    Name = "Adrenaline",
+    Icon = "rbxassetid://9744692070",
+    PremiumOnly = false
+})
+
+local Audio_Tab = Window:MakeTab({
+    Name = "Audio",
+    Icon = "rbxassetid://9743254397",
+    PremiumOnly = false
+})
+
+local Misc_Tab = Window:MakeTab({
+    Name = "Miscellaneous",
+    Icon = "rbxassetid://9405931578",
+    PremiumOnly = false
+})
+
+local Automatic_Tab = Window:MakeTab({
+    Name = "Automatic",
+    Icon = "rbxassetid://9742968183",
+    PremiumOnly = false
+})
+
+local Notifcations_Tab = Window:MakeTab({
+    Name = "Notifcations",
+    Icon = "rbxassetid://9745241351",
+    PremiumOnly = false
+})
+
+-- Main
+    Gearless_Tab:AddToggle({
+        Name = "Infinite Wallrun",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Infinite_Wallrun = Value
+        end    
+    })
+
+    Gearless_Tab:AddToggle({
+        Name = "Infinite Wallboost",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Infinite_Wallboost = Value
+        end    
+    })
+
+    Gearless_Tab:AddToggle({
+        Name = "Infinite Charge",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Infinite_Charge = Value
+        end    
+    })
+
+    Gearless_Tab:AddToggle({
+        Name = "Autocatch Zipline",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Auto_CatchZipline = Value
+        end    
+    })
+
+    Gearless_Tab:AddBind({
+        Name = "Ammo Reset",
+        Default = Enum.KeyCode.F,
+        Hold = false,
+        Callback = function()
+            game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+			task.wait()
+			game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Seated")
+        end    
+    })
+    
+    Gearless_Tab:AddBind({
+        Name = "Slide Speed",
+        Default = Enum.KeyCode.C,
+        Hold = false,
+        Callback = function()
+            if getgenv().Toggles.Slide_Speed == true then
+                getgenv().Toggles.Slide_Speed = false
+            elseif getgenv().Toggles.Slide_Speed == false then
+                getgenv().Toggles.Slide_Speed = true
+            end
+        end    
+    })
+
+    Gearless_Tab:AddBind({
+        Name = "Walk Speed",
+        Default = Enum.KeyCode.V,
+        Hold = false,
+        Callback = function()
+            if getgenv().Toggles.Walk_Speed == true then
+                getgenv().Toggles.Walk_Speed = false
+            elseif getgenv().Toggles.Walk_Speed == false then
+                getgenv().Toggles.Walk_Speed = true
+            end
+        end    
+    })
+
+    Gearless_Tab:AddSlider({
+        Name = "Slide Speed",
+        Min = 1,
+        Max = 1000,
+        Default = 1,
+        Color = Color3.fromRGB(255,255,255),
+        Increment = 5,
+        ValueName = nil,
+        Callback = function(Value)
+            getgenv().Sliders.Slide_Speed = Value
+        end    
+    })
+
+    Gearless_Tab:AddSlider({
+        Name = "Walk Speed",
+        Min = 1,
+        Max = 20,
+        Default = 1,
+        Color = Color3.fromRGB(255,255,255),
+        Increment = 1,
+        ValueName = nil,
+        Callback = function(Value)
+            getgenv().Sliders.Walk_Speed = Value
+        end    
+    })
+    
+    
+    Adrenaline_Tab:AddToggle({
+        Name = "Infinite Adrenaline",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Infinite_Adrenaline = Value
+        end    
+    })
+    
+    Misc_Tab:AddButton({
+        Name = "Unlock Spawns",
+        Callback = function()
+
+        end
+    })
+    
+    Misc_Tab:AddButton({
+        Name = "Unlock Badges",
+        Callback = function()
+            
+        end
+    })
+    
+    Misc_Tab:AddToggle({
+        Name = "God Mode",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.God_Mode = Value
+        end    
+    })
+    
+    Misc_Tab:AddToggle({
+        Name = "Anti Dunce",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Anti_Dunce = Value
+        end    
+    })
+    
+    Misc_Tab:AddToggle({
+        Name = "Anti Trail",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Anti_Trail = Value
+        end    
+    })
+    
+    Notifcations_Tab:AddToggle({
+        Name = "Staff Notifier",
+        Default = true,
+        Callback = function(Value)
+            getgenv().Toggles.Staff_Notifications = Value
+        end    
+    })
+
+    Notifcations_Tab:AddToggle({
+        Name = "Player Notifier",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Player_Notifications = Value
+        end    
+    })
+
+    Notifcations_Tab:AddToggle({
+        Name = "Bag Notifier",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Bag_Notifications = Value
+        end    
+    })
+
+    Magrail_Tab:AddToggle({
+        Name = "Infinite Magrail",
+        Default = false,
+        Callback = function(Value)
+            getgenv().Toggles.Infinite_Magrail = Value
+        end    
+    })
+    
+    Cola_Tab:AddLabel("WIP")
+    Automatic_Tab:AddLabel("WIP")
+    Grappler_Tab:AddLabel("WIP")
+    Paraglider_Tab:AddLabel("WIP")
+    Wingsuit_Tab:AddLabel("WIP")
+    Audio_Tab:AddLabel("WIP")
+
+    Library.Init()
+end
+
+function UI:Notify(Notification)
+    Library:MakeNotification(Notification)
+end
+
+-- Return
+return UI
+
+
+
+end
+end
+end
+
+
+local Util = {}
+-- Locals
+local RankId = 250 -- Staff+ IDs
+local GroupId = 3468086 -- Parkour Group
+
+-- Util
+local Util = {}
+
+function Util:CheckStaff(Player)
+    if Player:GetRankInGroup(GroupId) >= RankId then
+        return true
+    else
+        return false
+    end
+end
+
+function Util:Variables()
+    if getgenv().Activated == true then
+        pcall(function()
+            getgenv().Connections.Input_Began:Disconnect()
+            getgenv().Connections.Stepped_RunService:Disconnect()
+            getgenv().Connections.Staff_Notification:Disconnect()
+            getgenv().Connections.Player_Notification:Disconnect()
+        end)
+    end
+
+    getgenv().Activated = true
+    getgenv().GameVariables = nil
+    getgenv().Connections = {
+        Input_Began = nil,
+        Stepped_RunService = nil,
+        Staff_Notification = nil,
+        Player_Notification = nil,
+    }
+    getgenv().Toggles = {
+        -- Audio
+
+        -- Cola
+
+        -- Automatic
+
+        -- Wingsuit
+
+        -- Paraglider
+
+        -- Magrail
+        Infinite_Magrail = false,
+
+        -- Grappler
+        Infinite_Grappler = false,
+
+        -- Adrenaline
+        Infinite_Adrenaline = false,
+
+        -- Combo
+        Flow_Active = false,
+        Combo_Level = false,
+
+        -- Gearless
+        Infinite_Wallrun = false,
+        Infinite_Wallboost = false,
+        Infinite_Charge = false,
+        Auto_CatchZipline = false,
+        Ammo_Reset = false,
+        Slide_Speed = false,
+        Walk_Speed = false,
+
+        -- Misc
+        God_Mode = false,
+        Anti_Trail = false,
+        Anti_Dunce = false,
+
+        -- Notifcations
+        Staff_Notifications = false,
+        Player_Notifications = false,
+        Bag_Notifications = false,
+    }
+    getgenv().Sliders = {
+        Walk_Speed = 1,
+        Slide_Speed = 1,
+        Combo_Level = 1,
+    }
+    getgenv().ACB = {
+        BanRemotes = {
+            "LoadString",
+            "HighCombo",
+            "FF",
+            "SubmitCombo",
+            "UpdateCombo",
+            "LowCombo",
+            "FinishTimeTrial",
+            "UpdateDunceList",
+        },
+        Remotes = {},
+    }
+    getgenv().Other = {
+        Stimmed = false,
+        CanZipline = true,
+    }
+end
+
+-- Return
+return Util
+
+end
+end
+end
+
+local ACB = {}
+-- Services
+local Players = game:GetService("Players")
+
+-- Locals
+local Player = Players.LocalPlayer
+
+local Points_Script = Player.PlayerScripts.Points
+local Points_Env = getsenv(Points_Script)
+local Points_EnvIM = rawget(getrawmetatable(Points_Env), "__index")
+local Points_Func = rawget(rawget(Points_EnvIM, "shared"), "triggerPointsFunction")
+
+local GMT = getrawmetatable(game)
+setreadonly(GMT, false)
+local OLD = GMT.__namecall
+
+-- ACB
+local ACB = {}
+
+function ACB.Init()
+    if Points_Func and type(Points_Func) == 'function' then
+        local FuncTable
+        for _, Table in pairs(debug.getupvalues(Points_Func)) do
+            if type(Table) == 'table' and rawget(Table, 'parkour') and rawget(Table, 'statAdd') and rawget(Table, 'missionTrigger') then
+                FuncTable = Table
+                break
+            end
+        end
+    
+        if FuncTable then
+            for Name, Func in pairs(FuncTable) do
+                for _, Remote in pairs(debug.getupvalues(Func)) do
+                    if Remote.ClassName == 'RemoteEvent' then
+                        getgenv().ACB.Remotes[Name] = Remote
+                        break
+                    end
+                end
+            end
+        end
+    end
+
+    GMT.__namecall = newcclosure(function(self, ...)
+        local Method = getnamecallmethod()
+
+        if Method == "FireServer" and table.find(getgenv().ACB.BanRemotes, self.Name) then
+            return nil
+        elseif Method == "InvokeServer" and table.find(getgenv().ACB.BanRemotes, self.Name) then
+            return nil
+        elseif Method == "FireServer" and self == getgenv().ACB.Remotes.statAdd then
+            return nil
+        elseif Method == "FireServer" and self.Name == "SetTrail" and getgenv().Toggles.Anti_Trail == true then 
+            return nil
+        elseif Method == "TakeDamage" and self.ClassName and getgenv().Toggles.God_Mode == true then
+            return nil 
+        end
+
+        return OLD(self, ...)
+    end)
+end
+
+-- Return
+return ACB
+
+end end
+end
+
+-- Services
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+-- Locals
+local Player = Players.LocalPlayer
+local PlayerGui = Player.PlayerGui
+
+-- Runtime
+local Runtime = {}
+
+function Runtime.Init()
+    -- Set/Reset our global environmental variables.
+    Util:Variables()
+
+    task.wait(.1)
+
+    -- Run the Anticheat Bypass
+    ACB.Init()
+
+    -- Set/Reset the User Interface
+    UI.Init()
+
+    -- Set/Reset our Connections
+    getgenv().Connections.Stepped_RunService = RunService.RenderStepped:Connect(function()
+        -- Only run this step if player exists
+        if Player.Character:FindFirstChild("Humanoid") then
+            -- Assign the games main variables to a global variable
+            getgenv().GameVariables = getupvalue(getsenv(Player.Backpack:WaitForChild("Main")).resetAmmo, 1)
+
+            -- Main toggling stuff
+            if getgenv().Toggles.Anti_Dunce == true then
+                -- This just bypasses client sided things that check if you're dunced. (NOT SERVER)
+                local Shares = getrenv().shared
+                Shares.dunces[Player.Name] = false
+            end
+
+            if getgenv().Toggles.Infinite_Magrail then
+                getgenv().GameVariables.lastMagSlap = 0
+            end
+
+            if getgenv().Toggles.Combo_Level == true then
+                getgenv().GameVariables.comboTime = 1000
+                getgenv().GameVariables.comboHealth = 100
+                getgenv().GameVariables.comboXp = 1
+                getgenv().GameVariables.comboLevel = getgenv().Sliders.Combo_Level
+            end
+
+            if getgenv().Toggles.Flow_Active == true then
+                getgenv().GameVariables.flowActive = true;
+                getgenv().GameVariables.flowDelta = 100;
+            end
+
+            if getgenv().Toggles.Slide_Speed == true then
+                getgenv().GameVariables.slidespeed = getgenv().Sliders.Slide_Speed
+            end
+
+            if getgenv().Toggles.Infinite_Wallrun == true then
+                getgenv().GameVariables.recentWallruns = 0
+                getgenv().GameVariables.lastWR = 0
+                getgenv().GameVariables.maxWallrun = math.huge
+                getgenv().GameVariables.numWallrun = math.huge
+            end
+
+            if getgenv().Toggles.Walk_Speed == true then
+                getgenv().GameVariables.walkspeedMult = getgenv().Sliders.Walk_Speed
+            end
+
+            if getgenv().Toggles.Infinite_Wallboost == true then
+                getgenv().GameVariables.numWallclimb = math.huge
+                getgenv().GameVariables.lastWallClimb = 0
+            end
+
+            if getgenv().Toggles.Infinite_Charge == true then
+                getgenv().GameVariables.chargeCooldown = 0
+            else
+                getgenv().GameVariables.chargeCooldown = 2
+            end
+
+            local Zipline_Text = PlayerGui.GameplayUI.Zipline
+            local Zipline_Keybind = ReplicatedStorage.PlayerData[Player.Name].Settings.Keybinds.E
+            local Shift_Keybind = ReplicatedStorage.PlayerData[Player.Name].Settings.Keybinds.Shift
+            -- so cancer lol
+            if getgenv().Toggles.Auto_CatchZipline == true then
+                if getgenv().GameVariables.ziplining == false then
+                    if Zipline_Text.Visible == true then
+                        if Player.Character.Humanoid.FloorMaterial == Enum.Material.Air then
+                            if getgenv().Other.CanZipline == true then
+                                task.spawn(function()
+                                    getgenv().Other.CanZipline = false
+                                    VirtualInputManager:SendKeyEvent(true, Shift_Keybind.Value, false, game)
+                                    task.wait(0.05)
+                                    VirtualInputManager:SendKeyEvent(true, Zipline_Keybind.Value, false, game)
+                                    task.wait(.05)
+                                    VirtualInputManager:SendKeyEvent(false, Shift_Keybind.Value, false, game)
+                                    VirtualInputManager:SendKeyEvent(false, Zipline_Keybind.Value, false, game)
+                                end)
+                            end
+                        end
+                    end
+                end
+            end
+
+            if Player.Character.Humanoid.FloorMaterial ~= Enum.Material.Air then
+                -- Only reset the debounce if they're on the floor
+                if getgenv().GameVariables.ziplining == false then
+                    task.delay(1, function()
+                        getgenv().Other.CanZipline = true 
+                    end)
+                end
+            end
+
+        end
+    end)
+
+    getgenv().Connections.Input_Began = UserInputService.InputBegan:Connect(function(Input, Game_Processed)
+        local Back_Gear_Key = Player.PlayerGui.NewUI.Windows.Keybinds.Window.UseKit.Binding
+
+        if Input.KeyCode == Enum.KeyCode[Back_Gear_Key.Text] and not Game_Processed then
+            if getgenv().Toggles.Infinite_Adrenaline == false then 
+                getgenv().Other.Stimmed = false
+                return 
+            else
+                if getgenv().Other.Stimmed == true then
+                    -- Unstim
+                    getgenv().Other.Stimmed = false
+                    getgenv().GameVariables.adrenalineCooldown = 30
+                elseif getgenv().Other.Stimmed == false then
+                    -- Stim
+                    getgenv().Other.Stimmed = true
+                    task.wait(.2) -- Wait a tiny second for the animiation to play
+                    getgenv().GameVariables.adrenalineCooldown = math.huge
+                end
+            end
+        end   
+    end)
+
+    getgenv().Connections.Staff_Notification = Players.PlayerAdded:Connect(function(PlayerInstance)
+        
+        if getgenv().Toggles.Staff_Notifications == true then
+            if Util:CheckStaff(Player) == true then
+                UI:MakeNotification({
+                    Name = "Staff Joined",
+                    Content = "User: "..PlayerInstance.Name,
+                    Image = "rbxassetid://9745241351",
+                    Time = 10
+                })
+            end
+        
+        end
+    end)
+
+    
+    getgenv().Connections.Player_Notification = Players.PlayerAdded:Connect(function(PlayerInstance)
+        
+        if getgenv().Toggles.Player_Notifications == true then
+            UI:MakeNotification({
+                Name = "Player Joined",
+                Content = "User: "..PlayerInstance.Name,
+                Image = "rbxassetid://9745241351",
+                Time = 1.5
+            })
+        
+        end
+    end)
+end
+
+return Runtime
+

@@ -1,0 +1,47 @@
+--[[
+
+$$$$$$$\                     $$\                                     
+$$  __$$\                    $$ |                                    
+$$ |  $$ |$$$$$$\   $$$$$$\  $$ |  $$\  $$$$$$\  $$\   $$\  $$$$$$\  
+$$$$$$$  |\____$$\ $$  __$$\ $$ | $$  |$$  __$$\ $$ |  $$ |$$  __$$\ 
+$$  ____/ $$$$$$$ |$$ |  \__|$$$$$$  / $$ /  $$ |$$ |  $$ |$$ |  \__|
+$$ |     $$  __$$ |$$ |      $$  _$$<  $$ |  $$ |$$ |  $$ |$$ |      
+$$ |     \$$$$$$$ |$$ |      $$ | \$$\ \$$$$$$  |\$$$$$$  |$$ |      
+\__|      \_______|\__|      \__|  \__| \______/  \______/ \__|    
+
+]]--
+-- Functions
+local function Import_Files()
+    -- Check for folder.
+    if isfolder("ParkourGalaxy") then
+        -- If there is a folder then remove it to update it to current version.
+        delfolder("ParkourGalaxy")
+        Import_Files()
+        return
+    end
+
+    -- Make the folders.
+    makefolder("ParkourGalaxy")
+    makefolder("ParkourGalaxy/Modules")
+    makefolder("ParkourGalaxy/Source")
+
+    -- Make the files.
+    writefile("ParkourGalaxy/Modules/UTIL.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/UTIL.txt"))
+    writefile("ParkourGalaxy/Modules/TESTT.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/TESTT.txt"))
+    writefile("ParkourGalaxy/Modules/bbc.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/bbc.txt"))
+    writefile("ParkourGalaxy/Source/rundogrun.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/run%20dog%20run.txt"))
+end
+
+local function Init()
+    Import_Files()
+
+    repeat
+        task.wait()
+    until isfile("ParkourPaidGalaxy/Source/rundogrun.txt")
+
+    local Runtime = loadstring(readfile("ParkourPaidGalaxy/Source/rundogrun.txt"))()
+    Runtime.Init()
+end
+
+-- Main
+Init()
