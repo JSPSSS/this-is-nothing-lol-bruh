@@ -26,10 +26,10 @@ local function Import_Files()
     makefolder("ParkourGalaxy/Source")
 
     -- Make the files.
-    writefile("ParkourGalaxy/Modules/UTIL.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/UTIL.txt"))
-    writefile("ParkourGalaxy/Modules/TESTT.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/TESTT.txt"))
-    writefile("ParkourGalaxy/Modules/bbc.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/bbc.txt"))
-    writefile("ParkourGalaxy/Source/rundogrun.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/LOADERLOLOLO/main/run%20dog%20run.txt"))
+    writefile("ParkourGalaxy/Modules/UTIL.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/this-is-nothing-lol-bruh/main/UTIL.txt"))
+    writefile("ParkourGalaxy/Modules/TESTT.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/this-is-nothing-lol-bruh/main/TESTT.txt"))
+    writefile("ParkourGalaxy/Modules/bbc.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/this-is-nothing-lol-bruh/main/bbc.txt"))
+    writefile("ParkourGalaxy/Source/rundogrun.txt", game:HttpGetAsync("https://raw.githubusercontent.com/JSPSSS/this-is-nothing-lol-bruh/main/run%20dog%20run.txt"))
 end
 
 local function Init()
